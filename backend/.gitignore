@@ -1,0 +1,12 @@
+# Ignorar binarios y compilados
+*.class
+*.jar
+*.war
+
+# Ignorar directorios generados por Maven
+target/
+out/
+
+# Ignorar archivos de configuración local
+*.iml
+.idea/

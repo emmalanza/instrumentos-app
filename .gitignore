@@ -1,0 +1,10 @@
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar logs generales
+*.log
+
+# Ignorar dependencias de Node y Maven
+frontend/node_modules/
+backend/target/
