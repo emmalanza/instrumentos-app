@@ -14,7 +14,13 @@ public class InstrumentoTest {
     Instrumento instrumento;
     @BeforeEach
     void setUp() {
-        instrumento = new Instrumento("Piano", 1, "Cuerda") {};
+        instrumento = new Instrumento("Piano", 1, "Cuerda") {
+            @Override
+            public List<String> tocarInstrumento() {
+                return List.of("sonido", "sonido", "sonido");
+            }
+        };
+        
     }
     @Test
     void testInstanciaInstrumento() {
@@ -27,6 +33,13 @@ public class InstrumentoTest {
         assertThat(instrumento.getNombre(), is("Piano"));
         assertThat(instrumento.getId(), is(1));
         assertThat(instrumento.getTipo(), is("Cuerda"));
+    }
+
+    @Test
+    void testTocarInstrumento() {
+        List<String> tocarInstrumento = instrumento.tocarInstrumento();
+        assertThat(tocarInstrumento, is(instanceOf(List.class)));
+        
     }
 
 }
