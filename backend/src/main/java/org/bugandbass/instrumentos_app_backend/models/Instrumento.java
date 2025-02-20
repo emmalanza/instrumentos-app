@@ -1,5 +1,7 @@
 package org.bugandbass.instrumentos_app_backend.models;
 
+import java.util.List;
+
 public abstract class Instrumento {
     private String nombre;
     private int id;
@@ -26,4 +28,6 @@ public abstract class Instrumento {
     public String getTipo() {        
         return this.tipo;
     }
+
+    public abstract List<String> tocarInstrumento();
 }
