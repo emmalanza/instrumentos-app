@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Alata:regular);
+@import url(https://fonts.googleapis.com/css?family=Anton+SC:regular);
+@import url(https://fonts.googleapis.com/css?family=Advent+Pro:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import "tailwindcss";
+
+@theme {
+    --font-advent-pro: 'Advent Pro', sans-serif;
+    --font-alata: 'Alata', sans-serif;
+    --font-anton-sc: 'Anton SC', sans-serif;
+
+    --color-gray-1: #e6e6e6;
+    --color-gray-2: #a3a3a3;
+    --color-gray-3: #616161;
+    --color-gray-4: #292929;
+    --color-bright-yellow: #e7e300;
+
+}
