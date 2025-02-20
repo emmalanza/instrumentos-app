@@ -12,10 +12,6 @@ public abstract class Instrumento {
         this.id = id;
         this.tipo = tipo;
     }
-    
-    public Instrumento(String nombre) {
-        this.nombre = nombre;
-    }    
 
     public String getNombre() {
         return this.nombre;
@@ -29,5 +25,5 @@ public abstract class Instrumento {
         return this.tipo;
     }
 
-    public abstract List<String> tocarInstrumento();
+    public abstract List<Integer> tocarInstrumento();
 }
