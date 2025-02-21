@@ -29,7 +29,6 @@ public class InstrumentoTest {
     }
     @Test
     void testGettersIntrumento() {
-
         assertThat(instrumento.getNombre(), is("Piano"));
         assertThat(instrumento.getId(), is(instanceOf(Integer.class)));
         assertThat(instrumento.getTipo(), is("Cuerda"));
