@@ -26,13 +26,41 @@ public class PianoTest {
     }
     @Test
     void testTocarPiano() {
-        List<Integer> tocarInstrumento = piano.tocarInstrumento();
+        List<Nota> tocarInstrumento = piano.tocarInstrumento();
         assertThat(tocarInstrumento, is(instanceOf(List.class)));
         assertThat(tocarInstrumento, is(notNullValue()));
-        assertThat(tocarInstrumento.size(), is(3));
-        assertThat(tocarInstrumento.get(0), is(1));
-        assertThat(tocarInstrumento.get(1), is(2));
-        assertThat(tocarInstrumento.get(2), is(3));
+        assertThat(tocarInstrumento.size(), is(13));
+        assertThat(tocarInstrumento.get(0), is(instanceOf(Nota.class)));
+        assertThat(tocarInstrumento.get(0).getTecla(), is("A"));
+        assertThat(tocarInstrumento.get(0).getNombre(), is("C4"));
+        assertThat(tocarInstrumento.get(1).getTecla(), is("W"));
+        assertThat(tocarInstrumento.get(1).getNombre(), is("C#4"));
+        assertThat(tocarInstrumento.get(2).getTecla(), is("S"));
+        assertThat(tocarInstrumento.get(2).getNombre(), is("D4"));
+        assertThat(tocarInstrumento.get(3).getTecla(), is("E"));
+        assertThat(tocarInstrumento.get(3).getNombre(), is("D#4"));
+        assertThat(tocarInstrumento.get(4).getTecla(), is("D"));
+        assertThat(tocarInstrumento.get(4).getNombre(), is("E4"));
+        assertThat(tocarInstrumento.get(5).getTecla(), is("F"));
+        assertThat(tocarInstrumento.get(5).getNombre(), is("F4"));
+        assertThat(tocarInstrumento.get(6).getTecla(), is("T"));
+        assertThat(tocarInstrumento.get(6).getNombre(), is("F#4"));
+        assertThat(tocarInstrumento.get(7).getTecla(), is("J"));
+        assertThat(tocarInstrumento.get(7).getNombre(), is("G4"));
+        assertThat(tocarInstrumento.get(8).getTecla(), is("Y"));
+        assertThat(tocarInstrumento.get(8).getNombre(), is("G#4"));
+        assertThat(tocarInstrumento.get(9).getTecla(), is("K"));
+        assertThat(tocarInstrumento.get(9).getNombre(), is("A4"));
+        assertThat(tocarInstrumento.get(10).getTecla(), is("U"));
+        assertThat(tocarInstrumento.get(10).getNombre(), is("A#4"));
+        assertThat(tocarInstrumento.get(11).getTecla(), is("L"));
+        assertThat(tocarInstrumento.get(11).getNombre(), is("B4"));
+        assertThat(tocarInstrumento.get(12).getTecla(), is("Ñ"));
+        assertThat(tocarInstrumento.get(12).getNombre(), is("C5"));
+
+
+
+
     }
 
 }
