@@ -1,7 +1,6 @@
 package org.bugandbass.instrumentos_app_backend.models;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
@@ -13,8 +12,8 @@ public class NotaTest {
     
     @BeforeEach
     void setUp() {
-        nota1 = new Nota("Do", "C");
-        nota2 = new Nota("Re", "D");
+        nota1 = new Nota("C", "Do");
+        nota2 = new Nota("D", "Re");
     }
 
     @Test

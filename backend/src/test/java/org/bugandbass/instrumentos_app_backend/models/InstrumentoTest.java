@@ -16,8 +16,8 @@ public class InstrumentoTest {
     void setUp() {
         instrumento = new Instrumento("Piano","Cuerda") {
             @Override
-            public List<Integer> tocarInstrumento() {
-                return List.of(1, 2, 3);
+            public List<Nota> tocarInstrumento() {
+                return List.of(new Nota("C", "Do"), new Nota("D", "Re"), new Nota("Mi", "E"));
             }
         };
         
@@ -36,7 +36,7 @@ public class InstrumentoTest {
 
     @Test
     void testTocarInstrumento() {
-        List<Integer> tocarInstrumento = instrumento.tocarInstrumento();
+        List<Nota> tocarInstrumento = instrumento.tocarInstrumento();
         assertThat(tocarInstrumento, is(instanceOf(List.class)));
         
     }

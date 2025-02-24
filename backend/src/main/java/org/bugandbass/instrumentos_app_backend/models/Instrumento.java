@@ -26,5 +26,5 @@ public abstract class Instrumento {
         return this.tipo;
     }
 
-    public abstract List<Integer> tocarInstrumento();
+    public abstract List<Nota> tocarInstrumento();
 }
