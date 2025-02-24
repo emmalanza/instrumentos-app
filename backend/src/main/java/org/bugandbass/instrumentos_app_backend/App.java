@@ -1,17 +1,16 @@
 package org.bugandbass.instrumentos_app_backend;
 
+import org.bugandbass.instrumentos_app_backend.controllers.InstrumentoController;
+
 /**
  * Hello world!
  */
 public final class App {
     private App() {
     }
-
-    /**
-     * Says hello to the world.
-     * @param args The arguments of the program.
-     */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        InstrumentoController instrumentoController = new InstrumentoController();
+        instrumentoController.obtenerSonido();
+        
     }
 }
