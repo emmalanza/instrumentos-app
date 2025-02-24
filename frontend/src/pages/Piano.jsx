@@ -1,6 +1,7 @@
+import ComponentePiano from '../components/Piano'
 const Piano =  () => {
     return (
-        <h1> Prueba Página Piano</h1>
+        <ComponentePiano/>
     )
 }
 
