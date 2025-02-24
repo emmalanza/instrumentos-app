@@ -5,7 +5,7 @@ const Piano = () => {
     const sintetizador = new Tone.Synth().toDestination();
 
     const teclasBlancas = ["A", "S", "D", "F", "J", "K", "L", "Ñ"];
-    const teclasNegras = { "W": "C#4", "E": "D#4", "T": "F#4", "Y": "G#4", "U": "A#4" };
+    const teclasNegras = ["W", "E", "T", "Y", "U"];
 
     const teclasPiano = {
         "A": "C4", "W": "C#4", "S": "D4", "E": "D#4", "D": "E4", 
@@ -39,7 +39,7 @@ const Piano = () => {
                         </button>
                     </div>
                 ))}
-                {Object.entries(teclasNegras).map(([key, nota]) => (
+                {teclasNegras.map((key, index) => (
                     <div key={key} className={`absolute top-2 w-10 h-24 bg-black text-white border border-black flex items-center justify-center active:bg-gray-700 z-10 ${posicionesNegras[key]}`}> 
                         {key}
                     </div>
