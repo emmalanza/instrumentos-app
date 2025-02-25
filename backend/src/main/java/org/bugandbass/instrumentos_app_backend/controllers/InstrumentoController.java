@@ -19,9 +19,19 @@ public class InstrumentoController {
     public String obtenerSonido(){
         List<Nota> tocarInstrumento = this.piano.tocarInstrumento();
         String json = gson.toJson(tocarInstrumento);
-        System.out.println(json);
         return json;
 
+    }
+
+    public String responderSonido() {
+        String json = this.obtenerSonido();
+        return "HTTP/1.1 200 OK\r\n"
+                + "Content-Type: application/json\r\n"
+                + "Access-Control-Allow-Origin: http://localhost:5173\r\n"
+                + "Access-Control-Allow-Methods: GET\r\n"
+                + "Access-Control-Allow-Headers: Content-Type\r\n"
+                + "\r\n"
+                + json;
     }
 
 }

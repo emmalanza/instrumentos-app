@@ -1,16 +1,15 @@
 package org.bugandbass.instrumentos_app_backend;
 
-import org.bugandbass.instrumentos_app_backend.controllers.InstrumentoController;
+import java.net.ServerSocket;
 
-/**
- * Hello world!
- */
+import org.bugandbass.instrumentos_app_backend.controllers.HomeController;
+
 public final class App {
-    private App() {
-    }
-    public static void main(String[] args) {
-        InstrumentoController instrumentoController = new InstrumentoController();
-        instrumentoController.obtenerSonido();
+    public static void main(String[] args) throws Exception {
+        ServerSocket serverSocket = new ServerSocket(8080);
+        System.out.println("Servidor escuchando en puerto 8080...");
         
+        new HomeController(serverSocket);
+        //serverSocket.close();
     }
 }
