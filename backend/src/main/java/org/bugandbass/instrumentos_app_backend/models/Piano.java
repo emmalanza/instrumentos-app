@@ -3,12 +3,18 @@ package org.bugandbass.instrumentos_app_backend.models;
 import java.util.List;
 
 public class Piano extends Instrumento{
+    private List<Nota> notas;
+
     public Piano(String nombre, String tipo) {
         super(nombre, tipo);
+        this.notas= getNotas();
 
     }
     @Override
-    public List<Nota> tocarInstrumento() {
+    public List<Nota> tocarInstrumento(){
+        return this.notas;
+    }
+    public List<Nota> getNotas() {
         return List.of(
             new Nota("A", "C4"),
             new Nota("W", "C#4"),
