@@ -17,7 +17,7 @@ public class InstrumentoTest {
         instrumento = new Instrumento("Piano","Cuerda") {
             @Override
             public List<Nota> tocarInstrumento() {
-                return List.of(new Nota("C", "Do"), new Nota("D", "Re"), new Nota("Mi", "E"));
+                return List.of(new Nota(1, "C", "Do"), new Nota(2, "D", "Re"), new Nota(3, "Mi", "E"));
             }
         };
         

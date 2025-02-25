@@ -1,5 +1,7 @@
 package org.bugandbass.instrumentos_app_backend.controllers;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.List;
 
 import org.bugandbass.instrumentos_app_backend.models.Nota;
@@ -8,30 +10,26 @@ import org.bugandbass.instrumentos_app_backend.models.Piano;
 import com.google.gson.Gson;
 
 public class InstrumentoController {
-    private Piano piano;
-    private Gson gson;
 
-    public InstrumentoController(){
-        this.piano = new Piano("Piano", "Cuerda");
-        this.gson = new Gson();
-    }
+    public InstrumentoController(){}
 
     public String obtenerSonido(){
-        List<Nota> tocarInstrumento = this.piano.tocarInstrumento();
-        String json = gson.toJson(tocarInstrumento);
+        Piano piano = new Piano("Piano", "Cuerda");
+        List<Nota> tocarInstrumento = piano.tocarInstrumento();
+        String json = new Gson().toJson(tocarInstrumento);
         return json;
-
     }
 
-    public String responderSonido() {
+    public void responderSonido(BufferedWriter out) throws IOException {
         String json = this.obtenerSonido();
-        return "HTTP/1.1 200 OK\r\n"
-                + "Content-Type: application/json\r\n"
-                + "Access-Control-Allow-Origin: http://localhost:5173\r\n"
-                + "Access-Control-Allow-Methods: GET\r\n"
-                + "Access-Control-Allow-Headers: Content-Type\r\n"
-                + "\r\n"
-                + json;
+        out.write("HTTP/1.1 200 OK\r\n");
+        out.write("Content-Type: application/json\r\n");
+        out.write("Access-Control-Allow-Origin: http://localhost:5173\r\n");
+        out.write("Access-Control-Allow-Methods: GET\r\n");
+        out.write("Access-Control-Allow-Headers: Content-Type\r\n");
+        out.write("\r\n");
+        out.write(json);
+        out.flush();
     }
 
 }

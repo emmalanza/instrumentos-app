@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Tone from "tone";
 import './piano.css';
 
@@ -15,11 +15,7 @@ const Piano = () => {
     };
 
     const posicionesNegras = {
-        "W": "left-[72px]",  // C# entre A (C) y S (D)
-        "E": "left-[160px]",  // D# entre S (D) y D (E)
-        "T": "left-[335px]", // F# entre D (E) y F (F)
-        "Y": "left-[424px]", // G# entre F (F) y J (G)
-        "U": "left-[511px]"  // A# entre J (G) y K (A)
+        "W": "left-[72px]", "E": "left-[160px]", "T": "left-[335px]", "Y": "left-[424px]", "U": "left-[511px]"  
     };
 
     const [teclasActivas, setTeclasActivas] = useState({});
@@ -53,7 +49,7 @@ const Piano = () => {
         bg-gray-4 shadow-black shadow-2xl">
 
           <div className="w-full h-[181px] bg-gray-4/75 shadow-black shadow-xl rounded-2xl">
-            Aquí irían componentes temporizador y grabación
+           {/* Aquí irían componentes cronómetro y grabación  */}
           </div>
 
           <div className="flex flex-col items-center p-4 w-full">
