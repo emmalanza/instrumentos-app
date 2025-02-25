@@ -10,6 +10,5 @@ public final class App {
         System.out.println("Servidor escuchando en puerto 8080...");
         
         new HomeController(serverSocket);
-        //serverSocket.close();
     }
 }

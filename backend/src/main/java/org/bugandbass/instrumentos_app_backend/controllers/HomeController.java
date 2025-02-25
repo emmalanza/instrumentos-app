@@ -26,23 +26,23 @@ public class HomeController {
                 System.out.println("Solicitud recibida: " + requestLine);
     
                 if (requestLine == null) continue;
-    
-                String response;
-                if (requestLine.startsWith("GET /piano/notas")) {//esto necesita al controlador Instrumento
-                    response = instrumentoController.responderSonido();
-                } else if (requestLine.startsWith("GET /grabaciones")) {//esto necesita del controlador de grabaciones
-                    response = "HTTP/1.1 200 En construcción\r\n\r\n";
-                } else if (requestLine.startsWith("GET /salir")) {
-                    response = "HTTP/1.1 200 OK\r\n\r\nServidor finalizando";
-                    out.write(response);
+                
+                if (requestLine.startsWith("GET /piano/notas")) {
+                    instrumentoController.responderSonido(out);
+                    continue;
+                }
+                if (requestLine.startsWith("GET /grabaciones")) {
+                    continue;
+                } 
+                if (requestLine.startsWith("GET /salir")) {
+                    out.write("HTTP/1.1 200 OK\r\n\r\nServidor finalizando");
                     out.flush();
                     break;
-                } else {
-                    response = "HTTP/1.1 404 Not Found\r\n\r\n";
-                }                
-                out.write(response);
+                }
+                out.write("HTTP/1.1 404 Not Found\r\n\r\n");
                 out.flush();
             }
+            serverSocket.close();
         }
     }
    
