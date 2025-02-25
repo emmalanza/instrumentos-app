@@ -1,15 +1,14 @@
 package org.bugandbass.instrumentos_app_backend.models;
 
 public class Nota {
-    private static int contadorNota = 1; // Contador estático para IDs únicos
-    private final int idNota;
+    private int idNota;
     private String nombre;
     private String tecla;
     
 
     // Constructor
-    public Nota(String tecla, String nombre) {
-        this.idNota = contadorNota++;
+    public Nota(int idNota,String tecla, String nombre) {
+        this.idNota = idNota;
         this.tecla = tecla;
         this.nombre = nombre;
         
