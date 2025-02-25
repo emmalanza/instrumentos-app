@@ -9,7 +9,7 @@ const ListaInstrumentos = ({ instrumentos }) => {
             <ul className="grid grid-cols-2 gap-14 max-w-[800px]">
                 {instrumentos.map((instrumento) => (
                     !instrumento.available  ? (
-                        <li key={instrumento.id} className="relative flex flex-col justify-center items-center bg-gray-1 opacity-40 w-40 h-40 rounded-full">
+                        <li key={instrumento.id} className="relative flex flex-col justify-center items-center bg-gray-1 opacity-30 w-40 h-40 rounded-full">
                             <img src={instrumento.img} alt={instrumento.name} className="w-50 h-50" />
                             <span className="absolute bottom-0 text-5xl text-white font-anton-sc tracking-wide drop-shadow-lg">
                                 {instrumento.name}
@@ -20,7 +20,7 @@ const ListaInstrumentos = ({ instrumentos }) => {
                         </li>
                     ) : (
                         <li key={instrumento.id} className='transform transition duration-300 ease-in-out hover:scale-110'>
-                            <Link to={`/${instrumento.name}`} className="relative flex flex-col justify-center items-center bg-gray-1 w-40 h-40 rounded-full">
+                            <Link to={`/${instrumento.name}`} className="relative flex flex-col justify-center items-center bg-gray-2 w-40 h-40 rounded-full">
                                 <img src={instrumento.img} alt={instrumento.name} className="w-50 h-50" />
                                 <span className="absolute bottom-0 text-5xl text-white font-anton-sc tracking-wide drop-shadow-2xl">
                                     {instrumento.name}
