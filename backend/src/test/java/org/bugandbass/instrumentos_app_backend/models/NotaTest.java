@@ -12,8 +12,8 @@ public class NotaTest {
     
     @BeforeEach
     void setUp() {
-        nota1 = new Nota("C", "Do");
-        nota2 = new Nota("D", "Re");
+        nota1 = new Nota(1, "C", "Do");
+        nota2 = new Nota(2, "D", "Re");
     }
 
     @Test
