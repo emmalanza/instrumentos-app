@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-const Cronometro = ({ isRecording }) => {
+const Cronometro = ({ recording }) => {
     const [time, setTime] = useState(0);
+    const intervalRef = useRef(null);
 
     useEffect(() => {
-        let interval;
-
-        if (isRecording) {
-            interval = setInterval(() => {
+        
+        if (recording) { 
+            intervalRef.current = setInterval(() => {
                 setTime(prev => prev + 0.1);
             }, 100); 
         } else {
-            clearInterval(interval); 
+            clearInterval(intervalRef.current); 
             setTime(0); 
         }
 
-        return () => clearInterval(interval); 
-    }, [isRecording]); 
+        return () => clearInterval(intervalRef.current); 
+    }, [recording]); 
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
