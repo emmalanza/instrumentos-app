@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as Tone from "tone";
 import './piano.css';
 
+
 const Piano = () => {
     const sintetizador = new Tone.Synth().toDestination();
 
