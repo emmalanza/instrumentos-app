@@ -1,61 +1,56 @@
-import { useState } from "react";
 import Cronometro from "./Cronometro";
 import recordButton from "/src/assets/img/recordButton.svg";
+import { usePiano } from "./PianoContext";
 import * as Tone from "tone";
 
+
 const Grabacion = () => {
-  const [recording, setRecording] = useState(false);
-  const [notes, setNotes] = useState([]);
+  const { recording, startRecording, stopRecording, handleNotePlay, notas } = usePiano();
 
-  const synth = new Tone.Synth().toDestination();
-
-  const handleNotePlay = (note) => {
-    synth.triggerAttackRelease(note, "8n");
-
-    if (recording) {
-      setNotes((prev) => [...prev, { note, timestamp: Date.now() }]);
-    }
-  };
-
-  const startRecording = () => {
-    setNotes([]);
-    setRecording(true);
-  };
-
-  const stopRecording = async () => {
-    setRecording(false);
+  
     
-    // Aquí puedes volver a habilitar la petición si la necesitas
-    /* await fetch("http://localhost:8080/saveRecording", {
+   
+   const enviarGrabacion = async () => {
+      if (!Array.isArray(notas) || notas.length == 0) return;
+
+      try{
+        const grabacion = {
+          notas: notas.map(nota => ({
+            nota: nota.nota,
+            timestamp: nota.timestamp
+        }))
+        };
+
+      await fetch("http://localhost:8080/saveRecording", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ notes }),
-    }); */
+      body: JSON.stringify({ notas }),
+    }); 
+    console.log("Grabación enviada al backend");
+      } catch (error) {
+        console.error("Error al enviar la grabación:", error);
+      }
+    }
   };
+  const manejarDetenerGrabacion = () => {
+        stopRecording();
+        enviarGrabacion();
+    };
 
   return (
-    <div>
       <div>
-        <Cronometro isRecording={recording} />
-      </div>
-
-      <button onClick={startRecording}>
+        <Cronometro recording={recording} />
+        <p style={{ color: recording ? "red" : "black" }}>
+            {recording ? "Grabando..." : "No está grabando"}
+        </p>
+      <button onClick={startRecording} disabled={recording}>
         <img src={recordButton} alt="Grabar" />
       </button>
 
-      <button onClick={stopRecording}>
+      <button onClick={stopRecording} disabled={!recording}>
         ⏹️ 
       </button>
-
-      <div>
-        {[].map((note) => (
-          <button key={note} onClick={() => handleNotePlay(note)}>
-            {note}
-          </button>
-        ))}
-      </div>
     </div>
   );
-};
 
 export default Grabacion;

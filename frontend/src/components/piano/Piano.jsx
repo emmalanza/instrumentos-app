@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import * as Tone from "tone";
 import './piano.css';
+import { usePiano } from "./PianoContext";
+import Grabacion from "./Grabacion";
 
 
 const Piano = () => {
     const sintetizador = new Tone.Synth().toDestination();
+    const {handleNotePlay} = usePiano();
 
     const teclasBlancas = ["A", "S", "D", "F", "J", "K", "L", "Ñ"];
     const teclasNegras = ["W", "E", "T", "Y", "U"];
@@ -27,6 +30,7 @@ const Piano = () => {
         if (nota) {
             sintetizador.triggerAttackRelease(nota, "8n");
             setTeclasActivas((prev) => ({ ...prev, [tecla]: true }));
+            handleNotePlay(nota);
         }
     };
 
@@ -50,7 +54,7 @@ const Piano = () => {
         bg-gray-4 shadow-black shadow-2xl">
 
           <div className="w-full h-[181px] bg-gray-4/75 shadow-black shadow-xl rounded-2xl">
-           {/* Aquí irían componentes cronómetro y grabación  */}
+           <Grabacion/>
           </div>
 
           <div className="flex flex-col items-center p-4 w-full">
