@@ -23,22 +23,6 @@ public class InstrumentoControllerTest {
         assertFalse(sonido.isBlank());
         assertThat(sonido, is(instanceOf(String.class)));
     }
-   /* @Test
-    void testResponderSonido() throws IOException {
-        InstrumentoController controller = new InstrumentoController();
-        
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(byteArrayOutputStream));
-
-        controller.responderSonido(bufferedWriter);
-
-        String responseOutput = byteArrayOutputStream.toString();
-
-        assertTrue(responseOutput.contains("HTTP/1.1 200 OK"));
-        assertTrue(responseOutput.contains("Content-Type: application/json"));
-        assertTrue(responseOutput.contains("Access-Control-Allow-Origin: http://localhost:5173"));
-        assertTrue(responseOutput.contains("Access-Control-Allow-Methods: GET"));
-    }*/
     @Test
     void testResponderSonidoRestAssured() {
         
