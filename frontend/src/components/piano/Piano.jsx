@@ -8,15 +8,21 @@ import Grabacion from "./Grabacion";
 const Piano = () => {
     const sintetizador = new Tone.Synth().toDestination();
     const {handleNotePlay} = usePiano();
+    const [teclasPiano, setTeclasPiano] = useState([]);
 
     const teclasBlancas = ["A", "S", "D", "F", "J", "K", "L", "Ñ"];
     const teclasNegras = ["W", "E", "T", "Y", "U"];
 
-    const teclasPiano = {
-        "A": "C4", "W": "C#4", "S": "D4", "E": "D#4", "D": "E4",
-        "F": "F4", "T": "F#4", "J": "G4", "Y": "G#4", "K": "A4",
-        "U": "A#4", "L": "B4", "Ñ": "C5"
-    };
+    async function getSonidos() {
+      const respuesta = await fetch('http://localhost:8080/piano/notas', {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+      });
+      if (!respuesta.ok) {
+        throw new Error('Error al conectar con el backend');
+      }
+      return await respuesta.json();
+    }
 
     const posicionesNegras = {
         "W": "left-[72px]", "E": "left-[160px]", "T": "left-[335px]", "Y": "left-[424px]", "U": "left-[511px]"  
@@ -24,11 +30,19 @@ const Piano = () => {
 
     const [teclasActivas, setTeclasActivas] = useState({});
 
+    useEffect(() => {
+      const cargar = async () => {
+          const data = await getSonidos();
+          setTeclasPiano(data);
+      };
+      cargar();
+    }, []);
+
     const tocarTecla = (event) => {
         const tecla = event.key.toUpperCase();
-        const nota = teclasPiano[tecla];
+       const nota= teclasPiano.find((tecla) => tecla.tecla === event.key.toUpperCase());
         if (nota) {
-            sintetizador.triggerAttackRelease(nota, "8n");
+            sintetizador.triggerAttackRelease(nota.nombre, "8n");
             setTeclasActivas((prev) => ({ ...prev, [tecla]: true }));
             handleNotePlay(nota);
         }
@@ -46,7 +60,7 @@ const Piano = () => {
             window.removeEventListener("keydown", tocarTecla);
             window.removeEventListener("keyup", soltarTecla);
         };
-    }, []);
+    }, [teclasPiano]);
 
   
     return (
