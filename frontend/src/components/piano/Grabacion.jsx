@@ -1,5 +1,5 @@
 import Cronometro from "./Cronometro";
-import recordButton from "/src/assets/img/recordButton.svg";
+import recordButton from "/src/assets/img/instrumento/recordButton.svg";
 import { usePiano } from "./PianoContext";
 import * as Tone from "tone";
 
