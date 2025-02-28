@@ -3,6 +3,10 @@ import * as Tone from "tone";
 import './piano.css';
 import { usePiano } from "./PianoContext";
 import Grabacion from "./Grabacion";
+import HomeIcon from "../homeicon";
+import Footer from "../footer";
+import { Link } from "react-router-dom";
+import LinkGrabaciones from "../LinkGrabaciones";
 
 
 const Piano = () => {
@@ -64,9 +68,9 @@ const Piano = () => {
 
   
     return (
-        <div className="w-[775px] h-[605px] justify-self-center mt-10 rounded-2xl
-        bg-gray-4 shadow-black shadow-2xl">
-
+      <main className="flex flex-col items-center justify-center h-screen bg-black-opacity">
+        <div className="w-[775px] h-[605px] justify-self-center mt-10 rounded-2xl bg-gray-4 shadow-black shadow-2xl">
+          
           <div className="w-full h-[181px] bg-gray-4/75 shadow-black shadow-xl rounded-2xl">
            <Grabacion/>
           </div>
@@ -100,6 +104,7 @@ const Piano = () => {
             <p className="mt-2 text-sm text-gray-400">Usa las teclas A, W, S, E, D, F, T, J, Y, K, U, L, Ñ para tocar el piano</p>
           </div>
         </div>
+        </main>
       );
 };
 
