@@ -10,13 +10,18 @@ import com.google.gson.Gson;
 
 public class GrabacionController {
     public GrabacionController() {}
+    public List<Grabacion> getGrabaciones(){
+        RepositorioGrabaciones repositorioGrabaciones = new RepositorioGrabaciones();
+        return repositorioGrabaciones.getGrabaciones();
+    }
 
     public String index(){
-        List<String> grabaciones=Arrays.asList("Grabación 1", "Grabación 2", "Grabación 3");
-        return objectToJson(grabaciones);
+        
+        return objectToJson(getGrabaciones());
     }
     public String show(int id){
-        String grabacion="Grabación " + id;
+        List<Grabacion> grabaciones = getGrabaciones();
+        Grabacion grabacion = grabaciones.find( grabacion -> grabacion.getId() == id);
         return objectToJson(grabacion);       
     }
     public String create(BufferedReader in) throws IOException {
