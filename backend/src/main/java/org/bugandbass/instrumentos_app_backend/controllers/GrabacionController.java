@@ -3,25 +3,26 @@ package org.bugandbass.instrumentos_app_backend.controllers;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
+
+import org.bugandbass.instrumentos_app_backend.Repository.java.Repository;
+import org.bugandbass.instrumentos_app_backend.models.Grabacion;
 
 import com.google.gson.Gson;
 
 public class GrabacionController {
-    public GrabacionController() {}
-    public List<Grabacion> getGrabaciones(){
-        RepositorioGrabaciones repositorioGrabaciones = new RepositorioGrabaciones();
-        return repositorioGrabaciones.getGrabaciones();
+    Repository repository;
+
+    public GrabacionController() {
+        repository = new Repository();
     }
 
-    public String index(){
-        
-        return objectToJson(getGrabaciones());
+    public String index(){        
+        return objectToJson(repository.getGrabaciones());
     }
     public String show(int id){
-        List<Grabacion> grabaciones = getGrabaciones();
-        Grabacion grabacion = grabaciones.find( grabacion -> grabacion.getId() == id);
+        List<Grabacion> grabaciones = repository.getGrabaciones();
+        Grabacion grabacion = grabaciones.stream().filter(g -> g.getId() == id).findFirst().orElse(null);
         return objectToJson(grabacion);       
     }
     public String create(BufferedReader in) throws IOException {
@@ -32,7 +33,7 @@ public class GrabacionController {
         while (in.ready()) {  
             requestBody.append((char) in.read());
         }
-        
+        repository.addGrabacion(requestBody.toString());
         return requestBody.toString();
     }
 
@@ -55,10 +56,7 @@ public class GrabacionController {
             }
         }
         if(requestLine.startsWith("POST /grabaciones")){
-
             json = create(in);
-            System.out.println("aqui");
-            System.out.println(json);
         }
         
         byte[] responseBytes = json.getBytes("UTF-8");
