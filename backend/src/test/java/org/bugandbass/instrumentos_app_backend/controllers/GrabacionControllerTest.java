@@ -5,51 +5,74 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+import static org.mockito.Mockito.*;
+
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
+import org.bugandbass.instrumentos_app_backend.Repository.java.Repository;
+import org.bugandbass.instrumentos_app_backend.models.Grabacion;
 import org.junit.jupiter.api.BeforeEach;
 
 
 class GrabacionControllerTest {
 
-    private GrabacionController grabacionController;
+    private GrabacionController controller;
+    private Repository mockRepository;
 
     @BeforeEach
     void setUp() {
-        grabacionController = new GrabacionController();
+        mockRepository = mock(Repository.class);
+        controller = new GrabacionController();
+        controller.repository = mockRepository;
     }
 
     @Test
-    void testIndexReturnsJsonList() {
-        String json = grabacionController.index();
-        assertThat(json, containsString("Grabación 1"));
-        assertThat(json, containsString("Grabación 2"));
-        assertThat(json, containsString("Grabación 3"));
-    }
+    void testIndex() {
+        List<Grabacion> grabacionesMock = Arrays.asList(
+            new Grabacion(1, "Canción 1", null),
+            new Grabacion(2, "Canción 2", null)
+        );
+        when(mockRepository.getGrabaciones()).thenReturn(grabacionesMock);
 
+        String json = controller.index();
+
+        assertThat(json, containsString("\"id\":1"));
+        assertThat(json, containsString("\"nombreCancion\":\"Canción 1\""));
+        assertThat(json, containsString("\"id\":2"));
+        assertThat(json, containsString("\"nombreCancion\":\"Canción 2\""));
+    }
     @Test
-    void testShowReturnsJsonForId() {
-        String json = grabacionController.show(5);
-        assertThat(json, containsString("Grabación 5"));
-    }
+    void testShow() {
+        List<Grabacion> grabacionesMock = Arrays.asList(
+            new Grabacion(1, "Canción 1", null),
+            new Grabacion(2, "Canción 2", null)
+        );
+        when(mockRepository.getGrabaciones()).thenReturn(grabacionesMock);
 
+        String json = controller.show(2);
+
+        assertThat(json, containsString("\"id\":2"));
+        assertThat(json, containsString("\"nombreCancion\":\"Canción 2\""));
+    }
     @Test
-    void testCreateParsesRequestBody() throws IOException {
-        String inputJson = "{\"titulo\": \"Mi nueva grabación\"}\r\n";
-        BufferedReader in = new BufferedReader(new StringReader(inputJson));
+    void testResponderSonido() throws IOException {
+        StringWriter stringWriter = new StringWriter();
+        BufferedWriter bufferedWriter = new BufferedWriter(stringWriter);
 
-        String json = grabacionController.create(in);
-        assertThat(json, containsString("Mi nueva grabación"));
+        
+        controller.responderGrabacion("GET /grabaciones", bufferedWriter, null);
+
+        bufferedWriter.flush();
+        String response = stringWriter.toString();
+
+        assertThat(response, containsString("HTTP/1.1 200 OK"));
+        assertThat(response, containsString("Content-Type: application/json"));
+        assertThat(response, containsString("Access-Control-Allow-Origin: http://localhost:5173"));
+        assertThat(response, containsString("Access-Control-Allow-Methods: GET"));
+        assertThat(response, containsString("Access-Control-Allow-Headers: Content-Type")); 
     }
 
-    @Test
-    void testObjectToJson() {
-        List<String> data = List.of("Uno", "Dos", "Tres");
-        String json = grabacionController.objectToJson(data);
-
-        assertThat(json, containsString("Uno"));
-        assertThat(json, containsString("Dos"));
-        assertThat(json, containsString("Tres"));
-    }
+    
 }

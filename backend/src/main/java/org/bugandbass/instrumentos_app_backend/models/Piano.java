@@ -6,6 +6,7 @@ import java.util.List;
 public class Piano extends Instrumento{
     private static Piano instance;
     private List<Nota> notas;
+    private int idInstrumento = 1;
 
     private Piano(String nombre, String tipo) {
         super(nombre, tipo);
@@ -25,13 +26,13 @@ public class Piano extends Instrumento{
     }
     public List<Nota> getNotas() {
         return List.of(
-            new Nota("A", "C4"), new Nota("W", "C#4"),
-            new Nota("S", "D4"), new Nota("E", "D#4"),
-            new Nota( "D", "E4"), new Nota( "F", "F4"),
-            new Nota( "T", "F#4"), new Nota("J", "G4"),
-            new Nota("Y", "G#4"), new Nota("K", "A4"),
-            new Nota("U", "A#4"), new Nota("L", "B4"),
-            new Nota("Ñ", "C5")
+            new Nota(idInstrumento++, "A", "C4"), new Nota(idInstrumento++, "W", "C#4"),
+            new Nota(idInstrumento++, "S", "D4"), new Nota(idInstrumento++, "E", "D#4"),
+            new Nota(idInstrumento++, "D", "E4"), new Nota(idInstrumento++, "F", "F4"),
+            new Nota(idInstrumento++, "T", "F#4"), new Nota(idInstrumento++, "J", "G4"),
+            new Nota(idInstrumento++, "Y", "G#4"), new Nota(idInstrumento++, "K", "A4"),
+            new Nota(idInstrumento++, "U", "A#4"), new Nota(idInstrumento++, "L", "B4"),
+            new Nota(idInstrumento++, "Ñ", "C5")
         );
     }
 }
