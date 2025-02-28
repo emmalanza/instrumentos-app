@@ -1,5 +1,5 @@
 import Cronometro from "./Cronometro";
-import recordButton from "/src/assets/img/recordButton.svg";
+import recordButton from "/src/assets/img/instrumento/recordButton.svg";
 import { usePiano } from "./PianoContext";
 import * as Tone from "tone";
 
@@ -10,6 +10,12 @@ const Grabacion = () => {
    const enviarGrabacion = async () => {
       if (!Array.isArray(notas) || notas.length == 0) return;
 
+       const confirmar = window.confirm("¿Quieres guardar la grabación?");
+    if (!confirmar) {
+      console.log("Grabación descartada por el usuario.");
+      return;
+    }
+
       try{
         const grabacion = {
           notas: notas.map(nota => ({
@@ -18,7 +24,7 @@ const Grabacion = () => {
         }))
         };
 
-      await fetch("http://localhost:8080/saveRecording", {
+      await fetch("http://localhost:8080/grabacion", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(grabacion),
@@ -28,6 +34,9 @@ const Grabacion = () => {
         console.error("Error al enviar la grabación:", error);
         alert("Hubo un error al enviar la grabación");
     }
+
+    console.log("Grabación:", grabacion);
+
   };
   const manejarDetenerGrabacion = () => {
         stopRecording();
