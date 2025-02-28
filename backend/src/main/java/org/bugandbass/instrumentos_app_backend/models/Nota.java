@@ -14,6 +14,10 @@ public class Nota {
         
     }
 
+    public Nota(String string, String string2) {
+    
+    }
+
     // Getters
     public int getIdNota() {
         return idNota;
@@ -25,6 +29,10 @@ public class Nota {
 
     public String getTecla() {
         return tecla;
+    }
+
+    public String getNota() {
+        throw new UnsupportedOperationException("Unimplemented method 'getNota'");
     }
     
 }
