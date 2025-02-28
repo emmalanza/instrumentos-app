@@ -10,6 +10,12 @@ const Grabacion = () => {
    const enviarGrabacion = async () => {
       if (!Array.isArray(notas) || notas.length == 0) return;
 
+       const confirmar = window.confirm("¿Quieres guardar la grabación?");
+    if (!confirmar) {
+      console.log("Grabación descartada por el usuario.");
+      return;
+    }
+
       try{
         const grabacion = {
           notas: notas.map(nota => ({
