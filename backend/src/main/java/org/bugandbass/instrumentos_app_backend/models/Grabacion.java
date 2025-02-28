@@ -20,9 +20,6 @@ public class Grabacion {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombreCancion() {
         return nombreCancion;
@@ -38,5 +35,9 @@ public class Grabacion {
 
     public void setListaNotas(List<Map<String, String>> listaNotas) {
         this.listaNotas = listaNotas;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

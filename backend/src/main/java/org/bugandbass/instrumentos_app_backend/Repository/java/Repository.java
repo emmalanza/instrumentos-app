@@ -12,15 +12,22 @@ import java.util.Map;
 
 public class Repository {
     
-    public List<Grabacion> getGrabaciones() {
-        return grabaciones;
-    }
-
+    
+    private static Repository instance;
     private List<Grabacion> grabaciones;
-
+    private int id=1;
+    
     public Repository() {
-        grabaciones= this.iniciarArray();
+        this.grabaciones= this.iniciarArray();
     }
+
+    public static Repository getInstance() {
+        if (instance == null) {
+            instance = new Repository();
+        }
+        return instance;
+    }
+
     public List<Grabacion> iniciarArray() {        
         grabaciones = new ArrayList<>();
         List<Map<String, String>> cancion1 = Arrays.asList(
@@ -41,9 +48,9 @@ public class Repository {
             Map.of("C3", "1")
         );
         
-        grabaciones.add(new Grabacion(1, "titulo", cancion1));
-        grabaciones.add(new Grabacion(2, "titulo", cancion2));
-        grabaciones.add(new Grabacion(3, "titulo", cancion3));
+        grabaciones.add(new Grabacion(id++, "titulo", cancion1));
+        grabaciones.add(new Grabacion(id++, "titulo", cancion2));
+        grabaciones.add(new Grabacion(id++, "titulo", cancion3));
         return grabaciones;
 
     }
@@ -53,7 +60,13 @@ public class Repository {
 
         List<Grabacion> grabacion = gson.fromJson(json, new TypeToken<List<Grabacion>>() {}.getType());
 
-        grabaciones.addAll(grabacion);
+        for (Grabacion g : grabacion) {
+            g.setId(id++);
+            grabaciones.add(g);
+        }
 
+    }
+    public List<Grabacion> getGrabaciones() {
+        return grabaciones;
     }
 }
