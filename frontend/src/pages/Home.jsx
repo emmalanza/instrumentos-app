@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BannerSection from '../components/BannerSection';
 import ListaInstrumentos from '../components/ListaInstrumentos';
-import Footer from '../components/Footer';
-
+import Footer from '../components/footer';
 import Guitarra from '../assets/img/guitarra.svg';
 import Piano from '../assets/img/piano.svg';
 
