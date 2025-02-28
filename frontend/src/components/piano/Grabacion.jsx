@@ -18,7 +18,7 @@ const Grabacion = () => {
         }))
         };
 
-      await fetch("http://localhost:8080/saveRecording", {
+      await fetch("http://localhost:8080/grabacion", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(grabacion),
@@ -28,6 +28,9 @@ const Grabacion = () => {
         console.error("Error al enviar la grabación:", error);
         alert("Hubo un error al enviar la grabación");
     }
+
+    console.log("Grabación:", grabacion);
+
   };
   const manejarDetenerGrabacion = () => {
         stopRecording();
