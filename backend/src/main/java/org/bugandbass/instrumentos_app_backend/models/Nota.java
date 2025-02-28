@@ -1,14 +1,12 @@
 package org.bugandbass.instrumentos_app_backend.models;
 
 public class Nota {
-    private int idNota;
+    private int idNota=1;
     private String nombre;
     private String tecla;
     
-
-    // Constructor
     public Nota(int idNota,String tecla, String nombre) {
-        this.idNota = idNota;
+        this.idNota = idNota++;
         this.tecla = tecla;
         this.nombre = nombre;
         
@@ -18,7 +16,6 @@ public class Nota {
     
     }
 
-    // Getters
     public int getIdNota() {
         return idNota;
     }
