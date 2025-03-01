@@ -14,7 +14,8 @@ public class GrabacionController {
     Repository repository;
 
     public GrabacionController() {
-        repository = new Repository();
+        repository = Repository.getInstance();
+
     }
 
     public String index(){        

@@ -17,7 +17,7 @@ public class Repository {
     private List<Grabacion> grabaciones;
     private int id=1;
     
-    public Repository() {
+    private Repository() {
         this.grabaciones= this.iniciarArray();
     }
 
