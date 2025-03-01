@@ -6,12 +6,11 @@ import java.util.Map;
 public class Grabacion {
     private int id;
     private String nombreCancion;
-    private List<Map<String, String>> listaNotas;  // Changed this line
-
-    // Constructores, getters y setters
+    private List<Map<String, String>> listaNotas; 
+    
     public Grabacion() {}
 
-    public Grabacion(int id, String nombreCancion, List<Map<String, String>> listaNotas) {  // Changed this line
+    public Grabacion(int id, String nombreCancion, List<Map<String, String>> listaNotas) {
         this.id = id;
         this.nombreCancion = nombreCancion;
         this.listaNotas = listaNotas;
@@ -21,9 +20,6 @@ public class Grabacion {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombreCancion() {
         return nombreCancion;
@@ -33,11 +29,15 @@ public class Grabacion {
         this.nombreCancion = nombreCancion;
     }
 
-    public List<Map<String, String>> getListaNotas() {  // Changed this line
+    public List<Map<String, String>> getListaNotas() {
         return listaNotas;
     }
 
-    public void setListaNotas(List<Map<String, String>> listaNotas) {  // Changed this line
+    public void setListaNotas(List<Map<String, String>> listaNotas) {
         this.listaNotas = listaNotas;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
