@@ -58,12 +58,11 @@ public class Repository {
     public void addGrabacion(String json) {
         Gson gson = new Gson();
 
-        List<Grabacion> grabacion = gson.fromJson(json, new TypeToken<List<Grabacion>>() {}.getType());
+        List<Map<String, String>> listaNotas = gson.fromJson(json, new TypeToken<List<Map<String, String>>>() {}.getType());
 
-        for (Grabacion g : grabacion) {
-            g.setId(id++);
-            grabaciones.add(g);
-        }
+        Grabacion nuevaGrabacion = new Grabacion(id, "titulo" + id++, listaNotas);
+        
+        grabaciones.add(nuevaGrabacion);
 
     }
     public List<Grabacion> getGrabaciones() {
