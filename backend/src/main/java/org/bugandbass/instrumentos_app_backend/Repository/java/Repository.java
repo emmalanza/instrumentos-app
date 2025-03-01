@@ -48,9 +48,9 @@ public class Repository {
             Map.of("C3", "1")
         );
         
-        grabaciones.add(new Grabacion(id++, "titulo", cancion1));
-        grabaciones.add(new Grabacion(id++, "titulo", cancion2));
-        grabaciones.add(new Grabacion(id++, "titulo", cancion3));
+        grabaciones.add(new Grabacion(id++, "titulo1", cancion1));
+        grabaciones.add(new Grabacion(id++, "titulo2", cancion2));
+        grabaciones.add(new Grabacion(id++, "titulo3", cancion3));
         return grabaciones;
 
     }
